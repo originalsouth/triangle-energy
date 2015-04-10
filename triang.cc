@@ -37,34 +37,16 @@ double V3(double th0,double th1,double th2)
     return V;
 }
 
-int main(int argc,char *argv[])
+int main()
 {
-    double ans;
-    if(argc==4)
+    const double h=1e3;
+    const double pi=2.0*asin(1.0);
+    double eth0=0.0,eth1=0.0,eth2=0.0,V,Vmin=1e99;
+    for(double th0=0.0;th0<=pi;th0+=pi/h) for(double th1=0.0;th1<=pi;th1+=pi/h) for(double th2=0.0;th2<=pi;th2+=pi/h)
     {
-        ans=V3(atof(argv[1]),atof(argv[2]),atof(argv[3]));
-        printf("%F\n",ans);
+        V=V3(th0,th1,th2);
+        if(V<Vmin) Vmin=V,eth0=th0,eth1=th1,eth2=th2;
     }
-    else if(argc==6)
-    {
-        del=atof(argv[4]);
-        a=atof(argv[5]);
-        ans=V3(atof(argv[1]),atof(argv[2]),atof(argv[3]));
-        printf("%F\n",ans);
-    }
-    else if(argc==8)
-    {
-        del=atof(argv[4]);
-        a=atof(argv[5]);
-        b=atof(argv[6]);
-        k=atof(argv[7]);
-        ans=V3(atof(argv[1]),atof(argv[2]),atof(argv[3]));
-        printf("%F\n",ans);
-    }
-    else
-    {
-        ans=0.0;
-        printf("%F\n",ans);
-    }
+    printf("(%F,%F,%F) --> %F\n",eth0,eth1,eth2,V);
     return EXIT_SUCCESS;
 }
