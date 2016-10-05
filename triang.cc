@@ -14,8 +14,7 @@ double d(double x1,double y1,double x2,double y2)
 
 double VY(double r)
 {
-    return b/r;
-    //return b/(r*exp(k*r));
+    return b/(r*exp(k*r));
 }
 
 double V3(double th0,double th1,double th2)
